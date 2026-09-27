@@ -1,1 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Space Reapers | SPR</title>
+
+    <meta name="description"
+          content="Official homepage of Space Reapers (SPR) - an OGame alliance. Fear Our Name. Respect Our Peace.">
+
+    <style>
+
+        /* ================================
+           SPACE REAPERS - MAIN DESIGN
+           ================================ */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background:
+                radial-gradient(circle at 50% 15%, #10264a 0%, #050914 35%, #010207 75%);
+            color: #d9e9ff;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Stars */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.35;
+            background-image:
+                radial-gradient(2px 2px at 20% 30%, white, transparent),
+                radial-gradient(1px 1px at 70% 20%, white, transparent),
+                radial-gradient(2px 2px at 80% 70%, white, transparent),
+                radial-gradient(1px 1px at 40% 80%, white, transparent),
+                radial-gradient(1px 1px at 10% 90%, white, transparent),
+                radial-gradient(2px 2px at 60% 55%, white, transparent);
+            background-size: 250px 250px;
+            z-index: -1;
+        }
+
+        /* Navigation */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(1, 5, 12, 0.94);
+            border-bottom: 1px solid rgba(0, 153, 255, 0.35);
+
+            backdrop-filter: blur(10px);
+
+            padding: 12px 20px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #9ecfff;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            margin: 0 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: 0.2s;
+        }
+
+        nav a:hover {
+            color: #00aaff;
+            text-shadow: 0 0 12px #008cff;
+        }
+
+        /* Hero */
+
+        .hero {
+            min-height: 700px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            padding: 70px 20px;
+
+            position: relative;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+
+            background: radial-gradient(
+                circle,
+                rgba(0, 125, 255, 0.20),
+                transparent 65%
+            );
+
+            filter: blur(15px);
+            z-index: -1;
+        }
+
+        /* LOGO */
+
+        .logo {
+            width: min(420px, 82vw);
+            height: auto;
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 20px rgba(0, 140, 255, 0.7),
+                0 0 60px rgba(0, 100, 255, 0.25);
+
+            margin-bottom: 30px;
+        }
+
+        .title {
+            font-size: clamp(42px, 9vw, 82px);
+            font-weight: 900;
+
+            letter-spacing: 8px;
+
+            color: #e9f5ff;
+
+            text-shadow:
+                0 0 10px #008cff,
+                0 0 25px #005eff,
+                0 0 50px rgba(0, 100, 255, 0.7);
+
+            margin-bottom: 8px;
+        }
+
+        .tagline {
+            font-size: clamp(15px, 3vw, 22px);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+
+            color: #63bfff;
+
+            margin-bottom: 30px;
+        }
+
+        .hero-button {
+            display: inline-block;
+
+            padding: 14px 30px;
+
+            border: 1px solid #008cff;
+            border-radius: 5px;
+
+            color: #dff4ff;
+            text-decoration: none;
+
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+
+            background: rgba(0, 100, 180, 0.12);
+
+            box-shadow:
+                inset 0 0 15px rgba(0, 130, 255, 0.15),
+                0 0 15px rgba(0, 100, 255, 0.25);
+
+            transition: 0.25s;
+        }
+
+        .hero-button:hover {
+            background: rgba(0, 130, 255, 0.25);
+
+            box-shadow:
+                0 0 25px rgba(0, 140, 255, 0.7);
+
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+
+            font-size: 30px;
+
+            letter-spacing: 4px;
+            text-transform: uppercase;
+
+            color: #e8f6ff;
+
+            margin-bottom: 45px;
+
+            text-shadow:
+                0 0 15px rgba(0, 130, 255, 0.7);
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+
+            width: 90px;
+            height: 2px;
+
+            background: #008cff;
+
+            margin: 14px auto 0;
+
+            box-shadow: 0 0 12px #008cff;
+        }
+
+        /* Cards */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(13, 35, 65, 0.85),
+                    rgba(2, 8, 18, 0.92)
+                );
+
+            border: 1px solid rgba(0, 140, 255, 0.3);
+
+            border-radius: 8px;
+
+            padding: 28px;
+
+            box-shadow:
+                inset 0 0 30px rgba(0, 100, 255, 0.04),
+                0 8px 30px rgba(0, 0, 0, 0.4);
+
+            transition: 0.25s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+
+            border-color: rgba(0, 160, 255, 0.8);
+
+            box-shadow:
+                0 0 25px rgba(0, 110, 255, 0.18);
+        }
+
+        .card h3 {
+            color: #59bfff;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .card p {
+            color: #aabed4;
+        }
+
+        /* About */
+
+        .about-box {
+            max-width: 850px;
+            margin: auto;
+
+            text-align: center;
+
+            padding: 35px;
+
+            background: rgba(3, 13, 27, 0.8);
+
+            border-left: 2px solid #008cff;
+            border-right: 2px solid #008cff;
+
+            box-shadow:
+                0 0 35px rgba(0, 100, 255, 0.08);
+        }
+
+        .about-box p {
+            color: #b7cbe0;
+            font-size: 17px;
+        }
+
+        /* Rules */
+
+        .rules {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .rule {
+            display: flex;
+            gap: 18px;
+
+            padding: 18px 0;
+
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .rule-number {
+            min-width: 38px;
+            height: 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid #008cff;
+            border-radius: 50%;
+
+            color: #5fc4ff;
+
+            font-weight: bold;
+        }
+
+        /* Status */
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 8px 15px;
+
+            border: 1px solid rgba(0, 200, 255, 0.35);
+            border-radius: 30px;
+
+            color: #73d1ff;
+
+            background: rgba(0, 130, 255, 0.08);
+        }
+
+        .status-dot {
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+
+            background: #00d9ff;
+
+            box-shadow: 0 0 12px #00d9ff;
+        }
+
+        /* Diplomacy */
+
+        .peace {
+            text-align: center;
+
+            padding: 35px;
+
+            border: 1px solid rgba(0, 150, 255, 0.35);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0, 90, 180, 0.08),
+                    rgba(0, 0, 0, 0.3)
+                );
+        }
+
+        .peace h3 {
+            color: #62c7ff;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+
+        footer {
+            text-align: center;
+
+            padding: 45px 20px;
+
+            border-top: 1px solid rgba(0, 140, 255, 0.25);
+
+            background: rgba(0, 3, 8, 0.9);
+
+            color: #657b92;
+
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: #75c9ff;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 750px) {
+
+            nav a {
+                display: inline-block;
+                margin: 5px 7px;
+                font-size: 11px;
+            }
+
+            .hero {
+                min-height: 600px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .title {
+                letter-spacing: 4px;
+            }
+
+            .tagline {
+                letter-spacing: 2px;
+            }
+
+            section {
+                padding: 60px 18px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- ================================
+         NAVIGATION
+         ================================ -->
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#members">Members</a>
+        <a href="#rules">Rules</a>
+        <a href="#diplomacy">Diplomacy</a>
+    </nav>
+
+
+    <!-- ================================
+         HERO
+         ================================ -->
+
+    <header class="hero" id="home">
+
+        <!--
+        IMPORTANT:
+        Put your SPR logo in the repository and name it:
+
+        logo.png
+        -->
+
+        <img
+            src="logo.png"
+            alt="Space Reapers SPR Logo"
+            class="logo"
+        >
+
+        <h1 class="title">SPACE REAPERS</h1>
+
+        <p class="tagline">
+            Fear Our Name. Respect Our Peace.
+        </p>
+
+        <a href="#about" class="hero-button">
+            Enter Alliance
+        </a>
+
+    </header>
+
+
+    <!-- ================================
+         ABOUT
+         ================================ -->
+
+    <section id="about">
+
+        <h2 class="section-title">
+            The Space Reapers
+        </h2>
+
+        <div class="about-box">
+
+            <p>
+                We are the <strong>Space Reapers</strong> —
+                <strong>SPR</strong>.
+            </p>
+
+            <br>
+
+            <p>
+                A united alliance of commanders exploring the galaxy,
+                building powerful empires, and supporting our members.
+            </p>
+
+            <br>
+
+            <p>
+                We seek strength through cooperation, loyalty, strategy,
+                and respect. We do not seek unnecessary conflict,
+                but we will stand together when our alliance is threatened.
+            </p>
+
+            <br>
+
+            <p>
+                <strong>
+                    Strength in unity. Honor in peace. Power in numbers.
+                </strong>
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================
+         ALLIANCE FEATURES
+         ================================ -->
+
+    <section>
+
+        <h2 class="section-title">
+            Alliance
+        </h2>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>⚔ Strategy</h3>
+
+                <p>
+                    Coordinate fleets, resources and research
+                    to build stronger empires throughout the galaxy.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>☠ Brotherhood</h3>
+
+                <p>
+                    Our members support one another.
+                    No Reaper stands alone.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>🌌 Expansion</h3>
+
+                <p>
+                    Explore the universe, establish new worlds,
+                    and grow the influence of SPR.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================
+         MEMBERS
+         ================================ -->
+
+    <section id="members">
+
+        <h2 class="section-title">
+            Members
+        </h2>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>Alliance Leader</h3>
+
+                <p>
+                    <strong>YOUR NAME</strong>
+                </p>
+
+                <p>
+                    Alliance Founder / Leader
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Command Staff</h3>
+
+                <p>
+                    Add your officers and commanders here.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Reapers</h3>
+
+                <p>
+                    Add your alliance members here.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================
+         RULES
+         ================================ -->
+
+    <section id="rules">
+
+        <h2 class="section-title">
+            Code of the Reapers
+        </h2>
+
+        <div class="rules">
+
+            <div class="rule">
+
+                <div class="rule-number">01</div>
+
+                <div>
+                    <strong>Respect</strong><br>
+                    Treat alliance members and other players with respect.
+                </div>
+
+            </div>
+
+
+            <div class="rule">
+
+                <div class="rule-number">02</div>
+
+                <div>
+                    <strong>Unity</strong><br>
+                    Support fellow Reapers whenever possible.
+                </div>
+
+            </div>
+
+
+            <div class="rule">
+
+                <div class="rule-number">03</div>
+
+                <div>
+                    <strong>Communication</strong><br>
+                    Keep alliance leadership informed about major conflicts
+                    and important developments.
+                </div>
+
+            </div>
+
+
+            <div class="rule">
+
+                <div class="rule-number">04</div>
+
+                <div>
+                    <strong>No Unnecessary Conflict</strong><br>
+                    Avoid creating wars or conflicts that endanger the alliance.
+                </div>
+
+            </div>
+
+
+            <div class="rule">
+
+                <div class="rule-number">05</div>
+
+                <div>
+                    <strong>Protect SPR</strong><br>
+                    When the alliance is threatened, stand together.
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================
+         DIPLOMACY
+         ================================ -->
+
+    <section id="diplomacy">
+
+        <h2 class="section-title">
+            Diplomacy
+        </h2>
+
+        <div class="peace">
+
+            <div class="status">
+
+                <span class="status-dot"></span>
+
+                Peaceful / Diplomatic
+
+            </div>
+
+            <br><br>
+
+            <h3>WE SEEK PEACE — NOT WEAKNESS</h3>
+
+            <p>
+                Space Reapers welcomes diplomacy, trade,
+                cooperation and mutually beneficial relationships.
+            </p>
+
+            <br>
+
+            <p>
+                For diplomatic inquiries, contact
+                <strong>SPR Leadership</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================
+         FOOTER
+         ================================ -->
+
+    <footer>
+
+        <strong>SPACE REAPERS — SPR</strong>
+
+        <br><br>
+
+        Fear Our Name. Respect Our Peace.
+
+        <br><br>
+
+        <span>
+            OGame Alliance
+        </span>
+
+    </footer>
+
+</body>
+</html>
